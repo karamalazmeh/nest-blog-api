@@ -6,6 +6,9 @@ export interface IDatabaseConfigAttributes {
     port?: number | string;
     dialect?: string;
     urlDatabase?: string;
+    migrationStorage?: string;
+    migrationStorageTableName?: string;
+    migrationStorageTableSchema?: string;
 }
 
 export interface IDatabaseConfig {

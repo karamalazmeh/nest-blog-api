@@ -1,0 +1,14 @@
+//Not used. Delete if found
+
+const path = require('path');
+const dotenv = require('dotenv');
+
+// Load environment variables from .env
+dotenv.config();
+
+module.exports = {
+    'config': path.resolve('src/sequelize-db', 'config', 'database.js'),
+    'migrations-path': path.resolve('src/sequelize-db', 'migrations'),
+    'models-path': path.resolve('src/sequelize-db', 'models'),
+    'seeders-path': path.resolve('src/sequelize-db', 'seeders'),
+}

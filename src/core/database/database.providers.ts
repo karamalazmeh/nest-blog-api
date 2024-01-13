@@ -4,6 +4,8 @@ import { SEQUELIZE, DEVELOPMENT, TEST, PRODUCTION } from '../constants';
 import { databaseConfig } from './database.config';
 import { User } from '../../modules/users/user.entity';
 import { Post } from '../../modules/posts/post.entity';
+import getLatestMigration from './utils/isCorrectMigration';
+import isCorrectMigration from './utils/isCorrectMigration';
 
 export const databaseProviders = [
     {
@@ -13,25 +15,22 @@ export const databaseProviders = [
             switch (process.env.NODE_ENV) {
                 case DEVELOPMENT:
                     config = databaseConfig.development;
-                    console.log("ran dev db env")
                     break;
                 case TEST:
-
-                    console.log("ran test db env")
                     config = databaseConfig.test;
                     break;
                 case PRODUCTION:
                     config = databaseConfig.production;
                     break;
                 default:
-
                     console.log(process.env.NODE_ENV)
                     config = databaseConfig.development;
             }
             const sequelize = new Sequelize(config);
             sequelize.addModels([User, Post]);
+            await isCorrectMigration(sequelize, "20240113161408-users2-add-column-job-title.js")
             await sequelize.sync();
-            return sequelize;
+            return sequelize; 
         },
     },
 ];

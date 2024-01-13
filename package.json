@@ -16,7 +16,10 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "docker:create": "docker-compose up && exit 0",
+    "docker:run": "docker container start easypm_postgres && exit 0",
+    "docker:cli": "docker exec -it easypm_postgres /bin/bash && psql -d easypm_db -U easypm_super"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
@@ -34,7 +37,7 @@
     "passport-jwt": "4.0.0",
     "passport-local": "1.0.0",
     "pg": "^8.11.3",
-    "pg-hstore": "2.3.3",
+    "pg-hstore": "^2.3.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^2.6.2",
     "rxjs": "^7.2.0",
@@ -52,6 +55,7 @@
     "@types/passport-local": "1.0.33",
     "@types/supertest": "2.0.7",
     "prettier": "1.17.0",
+    "sequelize-cli": "^6.6.2",
     "supertest": "4.0.2",
     "ts-jest": "^26.4.1",
     "ts-node": "8.1.0",
