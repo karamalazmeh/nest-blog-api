@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#remove .sample and put your own preferred development credentials
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
+    CREATE USER main_user;
+    CREATE DATABASE user_defined_db ENCODING UTF8;
+    GRANT ALL PRIVILEGES ON DATABASE user_defined_db TO main_user;
+    ALTER USER main_user WITH PASSWORD 'password';
+    ALTER USER main_user WITH SUPERUSER;
+EOSQL

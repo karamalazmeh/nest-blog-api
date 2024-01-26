@@ -13,6 +13,7 @@ export const databaseProviders = [
         useFactory: async () => {
             let config;
             switch (process.env.NODE_ENV) {
+                
                 case DEVELOPMENT:
                     config = databaseConfig.development;
                     break;
@@ -28,7 +29,7 @@ export const databaseProviders = [
             }
             const sequelize = new Sequelize(config);
             sequelize.addModels([User, Post]);
-            await isCorrectMigration(sequelize, "20240113161408-users2-add-column-job-title.js")
+            // await isCorrectMigration(sequelize, "20240113161408-users2-add-column-job-title.js")
             await sequelize.sync();
             return sequelize; 
         },

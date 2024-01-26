@@ -18,8 +18,8 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "docker:create": "docker-compose up && exit 0",
-    "docker:run": "docker container start easypm_postgres && exit 0",
-    "docker:cli": "docker exec -it easypm_postgres /bin/bash && psql -d easypm_db -U easypm_super"
+    "docker:run": "docker container start nest_blog_postgres_container && exit 0",
+    "docker:terminal": "docker exec -it nest_blog_postgres_container /bin/bash"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",

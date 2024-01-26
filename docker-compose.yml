@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  db:
+    container_name: blog_postgres_container
+    image: postgres
+    volumes:
+      - ./db/initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - '5447:5432'
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+    secrets:
+      - db_password
+secrets:
+  db_password:
+    file: ./db/secrets/postgres_password.txt
